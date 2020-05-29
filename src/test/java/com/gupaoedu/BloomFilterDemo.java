@@ -46,11 +46,12 @@ public class BloomFilterDemo {
         int wrong = 0; // 错误判断的次数
 
         for (int i = 0; i < 10000; i++) {
-            // 可以被100整除的时候，取一个存在的数。否则随机生成一个UUID
+            // 可以被100整除的时候，取一个存在的数( 这个数/100 )。否则随机生成一个UUID
             // 0-10000之间，可以被100整除的数有100个（100的倍数）
             String data = i % 100 == 0 ? lists.get(i / 100) : UUID.randomUUID().toString();
-
+            //might可能 存在
             if (bf.mightContain(data)) {
+                //sets实际存在
                 if (sets.contains(data)) {
                     // 判断存在实际存在的时候，命中
                     right++;

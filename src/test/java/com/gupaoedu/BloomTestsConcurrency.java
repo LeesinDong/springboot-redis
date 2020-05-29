@@ -111,7 +111,7 @@ public class BloomTestsConcurrency {
             }
 
             // 1.1 （测试：布隆过滤器判断不存在，拦截——如果没有布隆过滤器，将造成缓存穿透）
-            // 随机产生一个字符串，在布隆过滤器中不存在
+            // 随机产生一个字符串，在redis中不存在
             String randomUser = UUID.randomUUID().toString();
             // 1.2 （测试：布隆过滤器判断存在，从Redis缓存取值，如果Redis为空则查询数据库并写入Redis）
             // 从List中获取一个存在的用户
@@ -120,6 +120,10 @@ public class BloomTestsConcurrency {
 
             Date date1 = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            /*
+            * 这里注释掉，看下结果
+            * */
 
             // 如果布隆过滤器中不存在这个用户直接返回，将流量挡掉
 /*            if (!bf.mightContain(randomUser)) {
